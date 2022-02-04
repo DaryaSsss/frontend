@@ -23,21 +23,20 @@ export default {
   methods: {
      createComment() {       
      this.comment.id=Date.now(),  
-    this.$emit('create', this.comment)
-    this.comment ={
-           user_name: '',
-                 comment: '',
-    }
-    axios.post('http://demo-api.vsdev.space/api/articles/1/comments', {
-    user_name: 'user_name',
-    comment: 'comment'
-  })
+    this.$emit('create', this.comment)    
+    axios.post('http://demo-api.vsdev.space/api/articles/1/comments', 
+        this.comment
+    )
   .then(function (response) {
     console.log(response);
   })
   .catch(function (error) {
     console.log(error);
   });
+  this.comment ={
+           user_name: '',
+                 comment: '',
+    }
    },
 }}
 </script>
