@@ -15,7 +15,7 @@ const routes =[
     {
         path:'/articles/:id',
         component: ArticlePage
-    },
+    },    
 ]
 
 const router = createRouter({
