@@ -3,10 +3,11 @@
  <div>
   <h2>Добро пожаловать!</h2>
   <h3>Для перехода к статьям нажмите <router-link to ="/articles" >здесь</router-link></h3>
-<vueper-slides>
-  <vueper-slide v-for="(slide, i) in slides" :key="i" :image="slide.image"  />
+  <div v-if="!slider">
+<vueper-slides >
+  <vueper-slide v-for="slide in slides" :key="slide.id" :image="slide.preview_image"  />
 </vueper-slides>
-
+</div>
 </div>
 </my-wrapper>
 </template>
@@ -14,21 +15,30 @@
 <script>
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
+import axios from 'axios'
 
 export default {
   components: { VueperSlides, VueperSlide },
-  data: () => ({
-  slides: [
-    {
-       image: require('@/assets/preview.jpg')
+  
+data(){
+    return{
+    slides: [],
+    slider: false,
+    }},
+methods: {    
+ async fetchSlides(){
+      try {
+        const responce =await axios.get('http://demo-api.vsdev.space/api/articles');
+        this.slides =responce.data;     
+      } catch(e) {
+        alert('Ошибка')
+      } 
     },
-     
-    {
-            image: require('@/assets/preview_2.jpg')
-    },
-    
-  ]
-})
+},
+   mounted(){
+     this.fetchSlides();
+  
+   },
 }
 </script>
 

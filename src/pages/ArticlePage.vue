@@ -2,7 +2,7 @@
 <my-wrapper>
     <div v-if="!isArticlesLoadings">
           <h1>{{this.id}}. {{this.name}}</h1>
-    <h2>{{this.shortDesc}}</h2>
+    <h2>{{this.desc}}</h2>
     <my-button @click="$router.push('/articles')">Назад</my-button>
 
         </div>
@@ -66,7 +66,7 @@
         const needUrl="http://demo-api.vsdev.space/api/articles/"+this.id;
         const responce =await axios.get(needUrl)
         this.name= responce.data.name;
-        this.shortDesc= responce.data.shortDesc;
+        this.desc= responce.data.desc;
       } catch(e) {
         alert('Ошибка')
       } finally {
