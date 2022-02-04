@@ -1,5 +1,6 @@
 <template>
     <div class="article">
+        <div><strong>{{article.id}}</strong></div>
    <div><strong>Название: </strong>{{article.title}}</div>
    <div><strong>Описание: </strong>{{article.body}}</div>
    <my-button style="margin-top: 15px;"

@@ -25,13 +25,13 @@ export default {
 .btn:hover {
    outline: none;
   box-shadow: 0 0 0 2px #C0C0C0;  
-;
+
 }
 
 .btn:focus {
    outline: none;
   box-shadow: 0 0 0 2px #C0C0C0;  
-;
+
 }
 
  </style>

@@ -1,31 +1,48 @@
 <template>
-    <div v-if="article">
-          <h1>Статья {{this.id}}</h1>
-          <p>Название статьи{{article.name}}</p>
-          <p>Описание{{article.desc}}</p>
+<my-wrapper>
+    <div v-if="!isArticlesLoadings">
+          <h1>{{this.id}}. {{this.title}}</h1>
+    <h2>{{this.body}}</h2>
+    <my-button @click="$router.push('/articles')">Назад</my-button>
 
         </div>
-        <div v-else>Загрузка...</div>
+        <div v-else align="center" style="margin-top: 15px">Идет загрузка...</div>
+        </my-wrapper>
 </template>
 
 
  <script>
+ import axios from 'axios';
 
  export default {
-     const: id:this.$route.params.id
-     data(){
-         return {
-             article: {
-              id:this.$route.params.id,
-      name:"",
-      desc:"",
-         }}
-     },
-         mounted(){
-     fetch('http://localhost:3000/articles/'+this.id)
-     .then(res=>res.json())
-     .then(data=>this.articles=data)
-     .catch(err=>console.log(err.message))
-   },
-   }
- </script>
+  name: "ArticleFull",
+  data(){
+    return{
+      id:this.$route.params.id,
+      title:"",
+      body:"",
+      isArticlesLoadings:true,
+    }
+  },
+
+  methods:{
+     async fetchFullArticles(){
+      try {
+        this.isArticlesLoadings = true;
+        const needUrl="https://jsonplaceholder.typicode.com/posts/"+this.id;
+        const responce =await axios.get(needUrl)
+        this.title= responce.data.title;
+        this.body= responce.data.body;
+      } catch(e) {
+        alert('Ошибка')
+      } finally {
+        this.isArticlesLoadings =false;
+      }
+    },
+  },
+  beforeMount() {
+    this.fetchFullArticles();
+  },
+}
+
+</script>

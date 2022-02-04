@@ -1,12 +1,14 @@
 <template>
+<my-wrapper>
  <div>
   <h2>Добро пожаловать!</h2>
   <h3>Для перехода к статьям нажмите <router-link to ="/articles" >здесь</router-link></h3>
 <vueper-slides>
-  <vueper-slide v-for="(slide, i) in slides" :key="i" :image="slide.image" :title="slide.title" :content="slide.content" />
+  <vueper-slide v-for="(slide, i) in slides" :key="i" :image="slide.image"  />
 </vueper-slides>
 
 </div>
+</my-wrapper>
 </template>
 
 <script>
@@ -18,15 +20,11 @@ export default {
   data: () => ({
   slides: [
     {
-      title: 'Slide #1',
-      content: 'preview.jpg',
        image: require('@/assets/preview.jpg')
     },
      
     {
-      title: 'Slide #1',
-      content: 'preview.jpg',
-       image: require('@/assets/preview_2.jpg')
+            image: require('@/assets/preview_2.jpg')
     },
     
   ]

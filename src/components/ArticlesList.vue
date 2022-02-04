@@ -35,7 +35,6 @@
 .article {
         padding: 15px;
         border: 2px solid #C0C0C0;
-        margin: 15px;
 }
 .article-list-item {
   display: inline-block;
