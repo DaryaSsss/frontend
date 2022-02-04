@@ -1,9 +1,11 @@
 <template>
-      <form @submit.prevent>
-           <h4>Создание поста</h4>
+      <form @submit.prevent  align="center">
+           <h4>Создание статьи</h4>
            <my-input v-focus v-model="article.title" type="text" placeholder="Название"></my-input>
+           <br>
                <my-input v-model="article.body" type="text" placeholder="Описание"></my-input>
-                 <my-button style="margin-top: 15px" @click="createArticle">Создать новый пост</my-button>
+               <br>
+                 <my-button style="margin-top: 15px" @click="createArticle">Создать новую статью</my-button>
          </form>
 </template>
 

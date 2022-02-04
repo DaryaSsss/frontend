@@ -32,5 +32,6 @@ export default {
     min-width: 300px;
     padding: 20px;
     border: 2px solid #C0C0C0;
+    
 }
 </style>
