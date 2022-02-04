@@ -1,0 +1,31 @@
+<template>
+    <div class="article">
+        <div><strong>{{article.id}}</strong></div>
+   <div><strong>Название: </strong>{{article.name}}</div>
+   <div><strong>Описание: </strong>{{article.desc}}</div>
+   <my-button @click="$router.push('/posts')">Назад</my-button>
+   </div>
+</template>
+  
+<script>
+
+export default {
+ 
+    props: {
+        article: {
+            type: Object,
+            required: true,
+        },
+          
+    }
+}
+</script>
+
+<style  scoped>
+.article {
+        padding: 15px;
+        border: 2px solid #C0C0C0;
+        margin-top: 15px;
+}
+
+ </style>
