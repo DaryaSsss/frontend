@@ -19,7 +19,6 @@
 v-if="!isArticlesLoadings"
 />
 <div v-else align="center">Идет загрузка...</div>
-<div  v-intersection="loadMoreArticles" class="observer"></div>
     </my-wrapper>
 </template> 
 
@@ -41,12 +40,9 @@ export default {
      isArticlesLoadings: false,
      selectedSort: '',
      searchQuery: '',
-     page: 1,
-     limit: 10,
-     totalPages: 0,
      sortOptions:[
-     {value: 'title', name: 'По названию'},
-      {value: 'body', name: 'По содержимому'},
+     {value: 'name', name: 'По названию'},
+      {value: 'shortDesc', name: 'По содержимому'},
    ]
    }
  },
@@ -64,13 +60,7 @@ export default {
     async fetchArticles(){
       try {
         this.isArticlesLoadings = true;
-        const responce =await axios.get('https://jsonplaceholder.typicode.com/posts', {
-          params: {
-            _page: this.page,
-            _limit: this.limit,
-          }
-        });
-        this.totalPages =Math.ceil(responce.headers['x-total-count']/this.limit)
+        const responce =await axios.get('http://demo-api.vsdev.space/api/articles');
         this.articles =responce.data;        
       } catch(e) {
         alert('Ошибка')
@@ -78,32 +68,17 @@ export default {
         this.isArticlesLoadings =false;
       }
     },
-      async loadMoreArticles(){
-      try {
-        this.page +=1;
-        const responce =await axios.get('https://jsonplaceholder.typicode.com/posts', {
-          params: {
-            _page: this.page,
-            _limit: this.limit,
-          }
-        });
-        this.totalPages =Math.ceil(responce.headers['x-total-count']/this.limit)
-        this.articles =[...this.articles, ...responce.data];        
-      } catch(e) {
-        alert('Ошибка')
-      }
-    }
    },
    mounted(){
      this.fetchArticles();
-     console.log(this.$refs.observer);
+  
    },
  computed: {
    sortedArticles() {
      return [...this.articles].sort((article1, article2)=> article1[this.selectedSort]?.localeCompare(article2[this.selectedSort]))
     },
     sortedAndSearchedArticles() {
-      return this.sortedArticles.filter(article => article.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
+      return this.sortedArticles.filter(article => article.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
     }
    },
 }

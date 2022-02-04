@@ -1,8 +1,8 @@
 <template>
 <my-wrapper>
     <div v-if="!isArticlesLoadings">
-          <h1>{{this.id}}. {{this.title}}</h1>
-    <h2>{{this.body}}</h2>
+          <h1>{{this.id}}. {{this.name}}</h1>
+    <h2>{{this.shortDesc}}</h2>
     <my-button @click="$router.push('/articles')">Назад</my-button>
 
         </div>
@@ -35,11 +35,8 @@
     comments: [],
       dialogVisible: false,
       id:this.$route.params.id,
-      title:"",
-      body:"",
-       page: 1,
-     limit: 10,
-     totalPages: 0,
+      user_name:"",
+      comment:"",
       isArticlesLoadings:true,
     }
   },
@@ -57,13 +54,7 @@
    },
         async fetchComments(){
       try {
-        const responce =await axios.get('https://jsonplaceholder.typicode.com/comments', {
-          params: {
-            _page: this.page,
-            _limit: this.limit,
-          }
-        });
-        this.totalPages =Math.ceil(responce.headers['x-total-count']/this.limit)
+        const responce =await axios.get('http://demo-api.vsdev.space/api/articles/1/comments');
         this.comments =responce.data;        
       } catch(e) {
         alert('Ошибка')
@@ -72,10 +63,10 @@
      async fetchFullArticles(){
       try {
         this.isArticlesLoadings = true;
-        const needUrl="https://jsonplaceholder.typicode.com/posts/"+this.id;
+        const needUrl="http://demo-api.vsdev.space/api/articles/"+this.id;
         const responce =await axios.get(needUrl)
-        this.title= responce.data.title;
-        this.body= responce.data.body;
+        this.name= responce.data.name;
+        this.shortDesc= responce.data.shortDesc;
       } catch(e) {
         alert('Ошибка')
       } finally {

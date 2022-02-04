@@ -1,8 +1,7 @@
 <template>
     <div class="comment">
-   <div><strong>Email: </strong>{{comment.email}}</div>
-   <div><strong>Название: </strong>{{comment.name}}</div>
-   <div><strong>Комментарий: </strong>{{comment.body}}</div>
+   <div><strong>Имя: </strong>{{comment.user_name}}</div>
+    <div><strong>Комментарий: </strong>{{comment.comment}}</div>
    <my-button style="margin-top: 15px ;"
    @click="$emit('remove', comment)">
        Удалить

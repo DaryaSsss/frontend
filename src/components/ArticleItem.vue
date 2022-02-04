@@ -1,8 +1,8 @@
 <template>
     <div class="article">
         <div><strong>{{article.id}}</strong></div>
-   <div><strong>Название: </strong>{{article.title}}</div>
-   <div><strong>Описание: </strong>{{article.body}}</div>
+   <div><strong>Название: </strong>{{article.name}}</div>
+   <div><strong>Описание: </strong>{{article.shortDesc}}</div>
    <my-button style="margin-top: 15px;"
        @click="$router.push(`/articles/${article.id}`)">
        Читать далее

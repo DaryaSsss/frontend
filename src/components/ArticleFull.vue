@@ -2,8 +2,8 @@
     <div class="article">
         <div><strong>{{article.id}}</strong></div>
    <div><strong>Название: </strong>{{article.name}}</div>
-   <div><strong>Описание: </strong>{{article.desc}}</div>
-   <my-button @click="$router.push('/posts')">Назад</my-button>
+   <div><strong>Описание: </strong>{{article.shortDesc}}</div>
+   <my-button @click="$router.push('/articles')">Назад</my-button>
    </div>
 </template>
   
