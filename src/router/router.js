@@ -16,10 +16,6 @@ const routes =[
         path:'/articles/:id',
         component: ArticlePage
     },   
-    { 
-    path:'/store',
-        component: ArticleWithStore
-    },    
 ]
 
 const router = createRouter({
