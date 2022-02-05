@@ -7,7 +7,6 @@
 
         </div>
         <div v-else align="center" style="margin-top: 15px">Идет загрузка...</div>
-
          <my-dialog v-model:show="dialogVisible">
         <comment-form @create="createComment"/>
       </my-dialog> 
@@ -54,7 +53,7 @@
    },
         async fetchComments(){
       try {
-        const responce =await axios.get('http://demo-api.vsdev.space/api/articles/1/comments');
+        const responce =await axios.get('http://demo-api.vsdev.space/api/articles/'+this.$route.params.id+'/comments');
         this.comments =responce.data;        
       } catch(e) {
         alert('Ошибка')
@@ -67,6 +66,7 @@
         const responce =await axios.get(needUrl)
         this.name= responce.data.name;
         this.desc= responce.data.desc;
+        this.full_image=responce.data.full_image;
       } catch(e) {
         alert('Ошибка')
       } finally {

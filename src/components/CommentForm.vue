@@ -17,14 +17,15 @@ export default {
             comment: {
                 user_name: '',
                  comment: '',
-            }
+            },
+            id:this.$route.params.id,
         }
     },
   methods: {
      createComment() {       
      this.comment.id=Date.now(),  
     this.$emit('create', this.comment)    
-    axios.post('http://demo-api.vsdev.space/api/articles/1/comments', 
+    axios.post('http://demo-api.vsdev.space/api/articles/'+this.$route.params.id+'/comments', 
         this.comment
     )
   .then(function (response) {
