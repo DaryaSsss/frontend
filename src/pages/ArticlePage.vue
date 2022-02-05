@@ -3,10 +3,14 @@
     <div v-if="!isArticlesLoadings">
           <h1>{{this.id}}. {{this.name}}</h1>
     <h2>{{this.desc}}</h2>
+   
+    <img :src="require('@/assets/' + this.full_image)"  contain width='600' height='400'/>
+    <br>
     <my-button @click="$router.push('/articles')">Назад</my-button>
 
         </div>
         <div v-else align="center" style="margin-top: 15px">Идет загрузка...</div>
+
          <my-dialog v-model:show="dialogVisible">
         <comment-form @create="createComment"/>
       </my-dialog> 
